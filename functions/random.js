@@ -22,12 +22,12 @@ export async function onRequest(context) {
 
     // 检查是否启用了随机图功能
     if (allowRandom != true) {
-        return new Response(JSON.stringify({ error: "Random is disabled" }), { status: 403 });
+        return new Response(JSON.stringify({ error: "Random未启用" }), { status: 403 });
     }
 
     // 检查是否配置了KV数据库
     if (typeof env.img_url == "undefined" || env.img_url == null || env.img_url == "") {
-        return new Response('Error: Please configure KV database', { status: 500 });
+        return new Response('Error: 请配置 KV数据库', { status: 500 });
     }
 
     // 处理允许的目录，每个目录调整为标准格式，去掉首尾空格，去掉开头的/，替换多个连续的/为单个/，去掉末尾的/
